@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useState, useEffect } from 'react';
+import Fuse from 'fuse.js';
 import SelectProfileContainer from './SelectProfileContainer';
 import { FirebaseContext } from '../context/firebase';
-import { Card, Header, Loading } from '../components';
+import { Card, Header, Loading, Player } from '../components';
 import * as ROUTES from '../constants/routes';
 import logo from '../logo.svg';
 import FooterContainer from './FooterContainer';
@@ -16,6 +17,7 @@ const BrowseContainer = ({ slides, ...rest }) => {
   const user = firebase.auth().currentUser || {};
   const [searchTerm, setSearchTerm] = useState('');
   const [slideRows, setSlideRows] = useState([]);
+
   useEffect(() => {
     console.log('profile', profile);
     setTimeout(() => {
@@ -27,18 +29,18 @@ const BrowseContainer = ({ slides, ...rest }) => {
     setSlideRows(slides[category]);
   }, [slides, category]);
 
-  // useEffect(() => {
-  //   const fuse = new Fuse(slideRows, {
-  //     keys: ['data.description', 'data.title', 'data.genre'],
-  //   });
-  //   const results = fuse.search(searchTerm).map(({ item }) => item);
+  useEffect(() => {
+    const fuse = new Fuse(slideRows, {
+      keys: ['data.description', 'data.title', 'data.genre'],
+    });
+    const results = fuse.search(searchTerm).map(({ item }) => item);
 
-  //   if (slideRows.length > 0 && searchTerm.length > 3 && results.length > 0) {
-  //     setSlideRows(results);
-  //   } else {
-  //     setSlideRows(slides[category]);
-  //   }
-  // }, [searchTerm]);
+    if (slideRows.length > 0 && searchTerm.length > 3 && results.length > 0) {
+      setSlideRows(results);
+    } else {
+      setSlideRows(slides[category]);
+    }
+  }, [searchTerm]);
 
   return profile.displayName ? (
     <>
@@ -114,10 +116,10 @@ const BrowseContainer = ({ slides, ...rest }) => {
               ))}
             </Card.Entities>
             <Card.Feature category={category}>
-              {/* <Player>
+              <Player>
                 <Player.Button />
                 <Player.Video src="/videos/bunny.mp4" />
-              </Player> */}
+              </Player>
             </Card.Feature>
           </Card>
         ))}
