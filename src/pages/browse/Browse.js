@@ -4,8 +4,6 @@ import BrowseContainer from '../../containers/BrowseContainer';
 import { useContent } from '../../hooks';
 import selectionFilter from '../../utils/selection-filter';
 
-console.log(selectionFilter);
-
 const Browse = () => {
   const { series } = useContent('series');
   const { films } = useContent('films');

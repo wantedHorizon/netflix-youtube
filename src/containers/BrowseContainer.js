@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+/* eslint-disable  */
 import React, { useContext, useState, useEffect } from 'react';
 import Fuse from 'fuse.js';
 import SelectProfileContainer from './SelectProfileContainer';
@@ -19,7 +19,6 @@ const BrowseContainer = ({ slides, ...rest }) => {
   const [slideRows, setSlideRows] = useState([]);
 
   useEffect(() => {
-    console.log('profile', profile);
     setTimeout(() => {
       setLoading(false);
     }, 3000);
