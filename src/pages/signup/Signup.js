@@ -70,7 +70,9 @@ const Signup = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            <Form.Submit disabled={isInvalid}>Sign Up</Form.Submit>
+            <Form.Submit disabled={isInvalid} data-testid="sign-up">
+              Sign Up
+            </Form.Submit>
           </Form.Base>
 
           <Form.Text>

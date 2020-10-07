@@ -29,6 +29,12 @@ Player.Video = function PlayerVideo({ src, ...restProps }) {
           <Inner>
             <video id="netflix-player" controls>
               <source src={src} type="video/mp4" />
+              <track
+                src="captions_en.vtt"
+                kind="captions"
+                srcLang="en"
+                label="english_captions"
+              />
             </video>
             <Close />
           </Inner>

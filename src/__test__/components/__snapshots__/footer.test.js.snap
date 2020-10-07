@@ -1,0 +1,146 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Footer /> renders the <Footer /> with populated data 1`] = `
+<div
+  class="footer__Container-sc-43naw5-0 NcegZ"
+>
+  <p
+    class="footer__Title-sc-43naw5-4 yYqFE"
+  >
+    Questions? Contact us.
+  </p>
+  <div
+    class="footer__Break-sc-43naw5-6 hyBiCc"
+  />
+  <div
+    class="footer__Row-sc-43naw5-2 dybRUh"
+  >
+    <div
+      class="footer__Column-sc-43naw5-1 bjyXLG"
+    >
+      <a
+        class="footer__Link-sc-43naw5-3 zpyTJ"
+        href="#"
+      >
+        FAQ
+      </a>
+      <a
+        class="footer__Link-sc-43naw5-3 zpyTJ"
+        href="#"
+      >
+        Investor Relations
+      </a>
+      <a
+        class="footer__Link-sc-43naw5-3 zpyTJ"
+        href="#"
+      >
+        Ways to Watch
+      </a>
+      <a
+        class="footer__Link-sc-43naw5-3 zpyTJ"
+        href="#"
+      >
+        Corporate Information
+      </a>
+      <a
+        class="footer__Link-sc-43naw5-3 zpyTJ"
+        href="#"
+      >
+        Netflix Originals
+      </a>
+    </div>
+    <div
+      class="footer__Column-sc-43naw5-1 bjyXLG"
+    >
+      <a
+        class="footer__Link-sc-43naw5-3 zpyTJ"
+        href="#"
+      >
+        Help Centre
+      </a>
+      <a
+        class="footer__Link-sc-43naw5-3 zpyTJ"
+        href="#"
+      >
+        Jobs
+      </a>
+      <a
+        class="footer__Link-sc-43naw5-3 zpyTJ"
+        href="#"
+      >
+        Terms of Use
+      </a>
+      <a
+        class="footer__Link-sc-43naw5-3 zpyTJ"
+        href="#"
+      >
+        Contact Us
+      </a>
+    </div>
+    <div
+      class="footer__Column-sc-43naw5-1 bjyXLG"
+    >
+      <a
+        class="footer__Link-sc-43naw5-3 zpyTJ"
+        href="#"
+      >
+        Account
+      </a>
+      <a
+        class="footer__Link-sc-43naw5-3 zpyTJ"
+        href="#"
+      >
+        Redeem gift cards
+      </a>
+      <a
+        class="footer__Link-sc-43naw5-3 zpyTJ"
+        href="#"
+      >
+        Privacy
+      </a>
+      <a
+        class="footer__Link-sc-43naw5-3 zpyTJ"
+        href="#"
+      >
+        Speed Test
+      </a>
+    </div>
+    <div
+      class="footer__Column-sc-43naw5-1 bjyXLG"
+    >
+      <a
+        class="footer__Link-sc-43naw5-3 zpyTJ"
+        href="#"
+      >
+        Media Centre
+      </a>
+      <a
+        class="footer__Link-sc-43naw5-3 zpyTJ"
+        href="#"
+      >
+        Buy gift cards
+      </a>
+      <a
+        class="footer__Link-sc-43naw5-3 zpyTJ"
+        href="#"
+      >
+        Cookie Preferences
+      </a>
+      <a
+        class="footer__Link-sc-43naw5-3 zpyTJ"
+        href="#"
+      >
+        Legal Notices
+      </a>
+    </div>
+  </div>
+  <div
+    class="footer__Break-sc-43naw5-6 hyBiCc"
+  />
+  <p
+    class="footer__Text-sc-43naw5-5 frDrTP"
+  >
+    Netflix United Kingdom
+  </p>
+</div>
+`;
