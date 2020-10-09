@@ -27,13 +27,14 @@ export function ProtectedRoute({ user, children, ...rest }) {
   return (
     <Route
       {...rest}
+      exact
       render={({ location }) => {
         if (user) {
           return children;
         }
         if (!user) {
           return (
-            <Redirect to={{ pathname: 'signin', state: { from: location } }} />
+            <Redirect to={{ pathname: '/signin', state: { from: location } }} />
           );
         }
         return null;

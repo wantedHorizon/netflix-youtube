@@ -7,9 +7,11 @@ import { Card, Header, Loading, Player } from '../components';
 import * as ROUTES from '../constants/routes';
 import logo from '../logo.svg';
 import FooterContainer from './FooterContainer';
+import {  useHistory } from 'react-router-dom';
 
 const BrowseContainer = ({ slides, ...rest }) => {
   const [category, setCategory] = useState('series');
+  const history = useHistory();
 
   const [profile, setProfile] = useState({});
   const [loading, setLoading] = useState(true);
@@ -17,6 +19,7 @@ const BrowseContainer = ({ slides, ...rest }) => {
   const user = firebase.auth().currentUser || {};
   const [searchTerm, setSearchTerm] = useState('');
   const [slideRows, setSlideRows] = useState([]);
+  
 
   useEffect(() => {
     setTimeout(() => {
@@ -60,6 +63,13 @@ const BrowseContainer = ({ slides, ...rest }) => {
               onClick={() => setCategory('films')}
             >
               Films
+            </Header.TextLink>
+            <Header.TextLink
+              active={false}
+              onClick={()=>history.push("/browse/youtube")}
+            >
+              Youtube
+
             </Header.TextLink>
           </Header.Group>
           <Header.Group>

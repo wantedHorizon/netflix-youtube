@@ -22,7 +22,7 @@ import {
 
 export const FeatureContext = createContext();
 
-const Card = ({ children, ...restProps }) => {
+const YoutubeCard = ({ children, ...restProps }) => {
   const [showFeature, setShowFeature] = useState(false);
   const [itemFeature, setItemFeature] = useState({});
 
@@ -35,31 +35,37 @@ const Card = ({ children, ...restProps }) => {
   );
 };
 
-Card.Group = function CardGroup({ children, ...restProps }) {
+YoutubeCard.Group = function YoutubeCardGroup({ children, ...restProps }) {
   return <Group {...restProps}>{children}</Group>;
 };
 
-Card.Title = function CardTitle({ children, ...restProps }) {
+YoutubeCard.Title = function YoutubeCardTitle({ children, ...restProps }) {
   return <Title {...restProps}>{children}</Title>;
 };
 
-Card.SubTitle = function CardSubTitle({ children, ...restProps }) {
+YoutubeCard.SubTitle = function YoutubeCardSubTitle({
+  children,
+  ...restProps
+}) {
   return <SubTitle {...restProps}>{children}</SubTitle>;
 };
 
-Card.Text = function CardText({ children, ...restProps }) {
+YoutubeCard.Text = function YoutubeCardText({ children, ...restProps }) {
   return <Text {...restProps}>{children}</Text>;
 };
 
-Card.Entities = function CardEntities({ children, ...restProps }) {
+YoutubeCard.Entities = function YoutubeCardEntities({
+  children,
+  ...restProps
+}) {
   return <Entities {...restProps}>{children}</Entities>;
 };
 
-Card.Meta = function CardMeta({ children, ...restProps }) {
+YoutubeCard.Meta = function YoutubeCardMeta({ children, ...restProps }) {
   return <Meta {...restProps}>{children}</Meta>;
 };
 
-Card.Item = function CardItem({ item, children, ...restProps }) {
+YoutubeCard.Item = function YoutubeCardItem({ item, children, ...restProps }) {
   const { setShowFeature, setItemFeature } = useContext(FeatureContext);
 
   return (
@@ -75,11 +81,15 @@ Card.Item = function CardItem({ item, children, ...restProps }) {
   );
 };
 
-Card.Image = function CardImage({ ...restProps }) {
+YoutubeCard.Image = function YoutubeCardImage({ ...restProps }) {
   return <Image {...restProps} />;
 };
 
-Card.Feature = function CardFeature({ children, category, ...restProps }) {
+YoutubeCard.Feature = function YoutubeCardFeature({
+  children,
+  category,
+  ...restProps
+}) {
   const { showFeature, itemFeature, setShowFeature } = useContext(
     FeatureContext
   );
@@ -112,37 +122,4 @@ Card.Feature = function CardFeature({ children, category, ...restProps }) {
   ) : null;
 };
 
-Card.YoutubeFeature = function CardYoutubeFeature({
-  children,
-  category,
-  ...restProps
-}) {
-  const { showFeature, itemFeature, setShowFeature } = useContext(
-    FeatureContext
-  );
-  console.log(itemFeature);
-
-  return showFeature ? (
-    <Feature {...restProps} src="/images/films/thriller/joker/large.jpg">
-      <Content>
-        <FeatureTitle>{itemFeature.snippet.title}</FeatureTitle>
-        <FeatureText>{itemFeature.snippet.description}</FeatureText>
-        <FeatureClose onClick={() => setShowFeature(false)}>
-          <img src="/images/icons/close.png" alt="Close" />
-        </FeatureClose>
-
-        <Group margin="30px 0" flexDirection="row" alignItems="center">
-          <Maturity rating={itemFeature.maturity}>PG</Maturity>
-          <FeatureText fontWeight="bold">
-            {/* {itemFeature.genre.charAt(0).toUpperCase() +
-              itemFeature.genre.slice(1)} */}
-          </FeatureText>
-        </Group>
-
-        {children}
-      </Content>
-    </Feature>
-  ) : null;
-};
-
-export default Card;
+export default YoutubeCard;

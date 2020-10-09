@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, BrowserRouter as Router } from 'react-router-dom';
 import { IsUserRedirect, ProtectedRoute } from './helpers/routes';
 import * as ROUTES from './constants/routes';
-import { Browse, Home, Signin, Signup } from './pages';
+import { Browse, Home, Signin, Signup, BrowseYoutube } from './pages';
 import { useAuthListener } from './hooks';
 
 function App() {
@@ -26,10 +26,12 @@ function App() {
             <Signup />
           </IsUserRedirect>
 
+          <ProtectedRoute user={user} path={ROUTES.YOUTUBE}>
+            <BrowseYoutube />
+          </ProtectedRoute>
           <ProtectedRoute user={user} path={ROUTES.BROWSE}>
             <Browse />
           </ProtectedRoute>
-
           <IsUserRedirect
             user={user}
             loggedInPath={ROUTES.BROWSE}

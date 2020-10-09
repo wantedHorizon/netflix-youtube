@@ -2,11 +2,18 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useContext, createContext } from 'react';
 import ReactDOM from 'react-dom';
-import { Container, Button, Overlay, Inner, Close } from './styles/player';
+import {
+  Container,
+  Button,
+  Overlay,
+  Inner,
+  Close,
+  PlayButton,
+} from './styles/player';
 
 export const PlayerContext = createContext();
 
-const Player = ({ children, ...restProps }) => {
+const YoutubePlayer = ({ children, ...restProps }) => {
   const [showPlayer, setShowPlayer] = useState(false);
 
   return (
@@ -16,7 +23,10 @@ const Player = ({ children, ...restProps }) => {
   );
 };
 
-Player.Video = function PlayerVideo({ src, ...restProps }) {
+YoutubePlayer.Video = function PlayerVideo({
+  src = 'zAGVQLHvwOY',
+  ...restProps
+}) {
   const { showPlayer, setShowPlayer } = useContext(PlayerContext);
 
   return showPlayer
@@ -27,15 +37,15 @@ Player.Video = function PlayerVideo({ src, ...restProps }) {
           {...restProps}
         >
           <Inner>
-            <video id="netflix-player" controls>
-              <source src={src} type="video/mp4" />
-              <track
-                src="captions_en.vtt"
-                kind="captions"
-                srcLang="en"
-                label="english_captions"
-              />
-            </video>
+            <iframe
+              title="youtube"
+              height="100%"
+              width="100%"
+              src={`https://www.youtube.com/embed/${src}`}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
             <Close />
           </Inner>
         </Overlay>,
@@ -44,7 +54,7 @@ Player.Video = function PlayerVideo({ src, ...restProps }) {
     : null;
 };
 
-Player.Button = function PlayerButton({ ...restProps }) {
+YoutubePlayer.Button = function PlayerButton({ ...restProps }) {
   // eslint-disable-next-line no-unused-vars
   const { showPlayer, setShowPlayer } = useContext(PlayerContext);
 
@@ -55,4 +65,16 @@ Player.Button = function PlayerButton({ ...restProps }) {
   );
 };
 
-export default Player;
+YoutubePlayer.PlayButton = function YoutubePlayerPlayButton({
+  children,
+  ...restProps
+}) {
+  const { showPlayer, setShowPlayer } = useContext(PlayerContext);
+
+  return (
+    <PlayButton onClick={() => setShowPlayer(() => !showPlayer)} {...restProps}>
+      {children}
+    </PlayButton>
+  );
+};
+export default YoutubePlayer;
