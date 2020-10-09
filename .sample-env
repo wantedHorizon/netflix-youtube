@@ -1,0 +1,4 @@
+SKIP_PREFLIGHT_CHECK=true	
+REACT_APP_YOUTUBE_API_KEY=Your_key_here
+
+//delete this line and rename this file to .env
