@@ -27,13 +27,10 @@ const categoriesTitle = [
 
 const BrowseYoutubeContainer = () => {
   const [categories, setCategories] = useState([]);
-  const [profile, setProfile] = useState({});
-  const [loading, setLoading] = useState(true);
 
   const { firebase } = useContext(FirebaseContext);
   const user = firebase.auth().currentUser || {};
-  const [searchTerm, setSearchTerm] = useState('');
-  const [videos, search] = useYoutubeVideos(searchTerm, setCategories);
+  const [results, term, setTerm] = useYoutubeVideos();
   const [clickedVideo, setClickedVideo] = useState('');
 
   const history = useHistory();
@@ -50,12 +47,8 @@ const BrowseYoutubeContainer = () => {
   };
   useEffect(() => {
     const localData = JSON.parse(localStorage.getItem('categories'));
-    console.log(localData);
     if (localData) {
       setCategories(localData);
-
-      // console.log(newData);
-      // localStorage.setItem('categories', JSON.stringify(newData));
     } else {
       try {
         const resolveCat = async (cat) => {
@@ -81,7 +74,13 @@ const BrowseYoutubeContainer = () => {
         console.log(e);
       }
     }
-  }, [categoriesTitle]);
+  }, []);
+
+  let displayCardsArr = categories;
+
+  if (results.length > 0 && term.length > 0 && results[0].title === term) {
+    displayCardsArr = results;
+  }
   return (
     <>
       <Header src="joker1" dontShowOnSmallViewPort>
@@ -103,10 +102,7 @@ const BrowseYoutubeContainer = () => {
             <Header.TextLink active="true">Youtube</Header.TextLink>
           </Header.Group>
           <Header.Group>
-            <Header.Search
-              searchTerm={searchTerm}
-              setSearchTerm={setSearchTerm}
-            />
+            <Header.Search searchTerm={term} setSearchTerm={setTerm} />
             <Header.Profile>
               <Header.Picture src={user.photoURL} />
               <Header.Dropdown>
@@ -140,41 +136,9 @@ const BrowseYoutubeContainer = () => {
         </Header.Feature>
       </Header>
 
-      {/* <YoutubeCard.Group style={{ marginButton: '50px' }}>
-        {searchTerm.length > 0 && videos && (
-          <YoutubeCard key={searchTerm}>
-            <YoutubeCard.Title>{searchTerm}</YoutubeCard.Title>
-            <YoutubeCard.Entities>
-              {videos &&
-                videos.map((item, i) => (
-                  <YoutubeCard.Item key={`${item.id.videoId}-${i}`} item={item}>
-                    <YoutubeCard.Image
-                      onClick={() => setClickedVideo(item.id.videoId)}
-                      src={`${item.snippet.thumbnails.medium.url}`}
-                    />
-                    <YoutubeCard.Meta>
-                      <YoutubeCard.SubTitle>
-                        {item.snippet.channelTitle}
-                      </YoutubeCard.SubTitle>
-                      <YoutubeCard.Text>
-                        {item.snippet.description}
-                      </YoutubeCard.Text>
-                    </YoutubeCard.Meta>
-                  </YoutubeCard.Item>
-                ))}
-            </YoutubeCard.Entities>
-            <YoutubeCard.YoutubeFeature background="red" category={searchTerm}>
-              <Player>
-                <Player.Button />
-                <Player.Video src={clickedVideo} />
-              </Player>
-            </YoutubeCard.YoutubeFeature>
-          </YoutubeCard>
-        )}
-      </YoutubeCard.Group> */}
       <YoutubeCard.Group>
-        {categories &&
-          categories.map((category) => (
+        {displayCardsArr &&
+          displayCardsArr.map((category) => (
             <YoutubeCard key={category.title}>
               <YoutubeCard.Title>{category.title}</YoutubeCard.Title>
               <YoutubeCard.Entities>
